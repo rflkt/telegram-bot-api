@@ -13,10 +13,11 @@ RUN mkdir -p build \
 
 FROM alpine:3.17.2
 
+# user and group ids 101 match the corresponding of nginx
 ENV TELEGRAM_WORK_DIR="/var/lib/telegram-bot-api" \
     TELEGRAM_TEMP_DIR="/tmp/telegram-bot-api" \
-    GROUP_ID=6601 \
-    USER_ID=6601
+    GROUP_ID=101 \
+    USER_ID=101
 
 RUN apk add --no-cache --update openssl libstdc++
 COPY --from=build /usr/src/telegram-bot-api/bin/telegram-bot-api /usr/local/bin/telegram-bot-api
